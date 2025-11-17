@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ewo Mobile - Премиум техника</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app">
+        <!-- Premium Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="brand">
+                    <div class="logo">EWO MOBILE</div>
+                    <div class="tagline">Премиум техника</div>
+                </div>
+                <div class="header-actions">
+                    <button class="cart-btn" id="cartButton">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                            <path d="M3 3H5L5.4 5M7 13H17L21 5H5.4M7 13L5.4 5M7 13L4.7 15.3C4.3 15.7 4.6 16.5 5.2 16.5H17M17 13V16.5M9 19.5C9 20.3 8.3 21 7.5 21C6.7 21 6 20.3 6 19.5C6 18.7 6.7 18 7.5 18C8.3 18 9 18.7 9 19.5ZM18 19.5C18 20.3 17.3 21 16.5 21C15.7 21 15 20.3 15 19.5C15 18.7 15.7 18 16.5 18C17.3 18 18 18.7 18 19.5Z" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                        <span class="cart-count" id="cartCount">0</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title">Техника будущего<br>уже сегодня</h1>
+                <p class="hero-subtitle">Apple, Samsung, Sony и другие бренды премиум-класса</p>
+                <button class="cta-button" onclick="scrollToProducts()">Смотреть каталог</button>
+            </div>
+            <div class="hero-background"></div>
+        </section>
+
+        <!-- Main Content -->
+        <main class="main">
+            <!-- Categories -->
+            <section class="categories-section">
+                <div class="container">
+                    <h2 class="section-title">Категории</h2>
+                    <div class="categories-grid" id="categories">
+                        <!-- Categories will be loaded here -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Featured Products -->
+            <section class="products-section" id="productsSection">
+                <div class="container">
+                    <div class="section-header">
+                        <h2 class="section-title">Популярные товары</h2>
+                        <div class="view-all" onclick="showAllProducts()">Все товары</div>
+                    </div>
+                    <div class="products-grid" id="products">
+                        <!-- Products will be loaded here -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Features -->
+            <section class="features-section">
+                <div class="container">
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">🚚</div>
+                            <h3>Быстрая доставка</h3>
+                            <p>Доставим за 1-2 дня по всему городу</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🛡️</div>
+                            <h3>Гарантия 2 года</h3>
+                            <p>Официальная гарантия на всю технику</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">💳</div>
+                            <h3>Рассрочка 0%</h3>
+                            <p>Покупка в рассрочку без переплат</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Shopping Cart -->
+        <div class="cart-overlay" id="cartOverlay">
+            <div class="cart-container">
+                <div class="cart-header">
+                    <h3>Ваша корзина</h3>
+                    <button class="close-cart" id="closeCart">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="cart-content">
+                    <div class="cart-items" id="cartItems">
+                        <!-- Cart items will be loaded here -->
+                    </div>
+                    <div class="cart-empty" id="cartEmpty">
+                        <div class="empty-icon">🛒</div>
+                        <p>Ваша корзина пуста</p>
+                        <button class="continue-shopping" onclick="closeCart()">Продолжить покупки</button>
+                    </div>
+                </div>
+                <div class="cart-footer">
+                    <div class="cart-summary">
+                        <div class="cart-total">
+                            <span>Итого:</span>
+                            <span id="cartTotal">0</span>₽
+                        </div>
+                        <button class="checkout-btn" id="checkoutBtn">Оформить заказ</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-brand">
+                        <div class="logo">EWO MOBILE</div>
+                        <p>Премиум техника с доставкой</p>
+                    </div>
+                    <div class="footer-contacts">
+                        <h4>Контакты</h4>
+                        <p>+7 (999) 123-45-67</p>
+                        <p>shop@ewomobile.ru</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
