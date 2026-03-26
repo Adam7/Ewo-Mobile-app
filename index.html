@@ -3,140 +3,201 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ewo Mobile - Премиум техника</title>
+    <title>GlowUp — MVP для iOS/Android</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="app">
-        <!-- Premium Header -->
         <header class="header">
-            <div class="header-content">
-                <div class="brand">
-                    <div class="logo">EWO MOBILE</div>
-                    <div class="tagline">Премиум техника</div>
+            <div class="container header-content">
+                <div>
+                    <div class="logo">GLOWUP</div>
+                    <p class="tagline">Прогресс по шагам: кожа • волосы • форма • дисциплина</p>
                 </div>
                 <div class="header-actions">
-                    <button class="cart-btn" id="cartButton">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                            <path d="M3 3H5L5.4 5M7 13H17L21 5H5.4M7 13L5.4 5M7 13L4.7 15.3C4.3 15.7 4.6 16.5 5.2 16.5H17M17 13V16.5M9 19.5C9 20.3 8.3 21 7.5 21C6.7 21 6 20.3 6 19.5C6 18.7 6.7 18 7.5 18C8.3 18 9 18.7 9 19.5ZM18 19.5C18 20.3 17.3 21 16.5 21C15.7 21 15 20.3 15 19.5C15 18.7 15.7 18 16.5 18C17.3 18 18 18.7 18 19.5Z" stroke="currentColor" stroke-width="2"/>
-                        </svg>
-                        <span class="cart-count" id="cartCount">0</span>
-                    </button>
+                    <span class="pill" id="currentPlanBadge">Тариф: Free</span>
+                    <span id="authStatus" class="pill">Гость</span>
+                    <button id="authButton" class="ghost-btn">Войти</button>
+                    <button id="subscriptionButton" class="primary-btn">Подписка</button>
                 </div>
             </div>
         </header>
 
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="hero-content">
-                <h1 class="hero-title">Техника будущего<br>уже сегодня</h1>
-                <p class="hero-subtitle">Apple, Samsung, Sony и другие бренды премиум-класса</p>
-                <button class="cta-button" onclick="scrollToProducts()">Смотреть каталог</button>
+        <section class="notice">
+            <div class="container">
+                <p>
+                    ⚠️ Контент носит образовательный характер и не заменяет консультацию врача.
+                    Для пользователей младше 16 лет рекомендуется согласование с родителями.
+                </p>
             </div>
-            <div class="hero-background"></div>
         </section>
 
-        <!-- Main Content -->
-        <main class="main">
-            <!-- Categories -->
-            <section class="categories-section">
-                <div class="container">
-                    <h2 class="section-title">Категории</h2>
-                    <div class="categories-grid" id="categories">
-                        <!-- Categories will be loaded here -->
+        <section class="hero">
+            <div class="container hero-grid">
+                <div>
+                    <h1>Запусти свою систему изменений на 30 дней</h1>
+                    <p>Выбирай цель, выполняй ежедневные задания и получай персональные советы с безопасным подходом.</p>
+                    <div class="hero-actions">
+                        <button onclick="scrollToSection('goalsSection')" class="primary-btn">Выбрать цель</button>
+                        <button onclick="scrollToSection('planSection')" class="ghost-btn">Ежедневный план</button>
+                        <button id="openOnboardingButton" class="ghost-btn">Настроить план</button>
                     </div>
+                </div>
+                <div class="stat-card">
+                    <h3>Твой статус</h3>
+                    <div class="stat-row"><span>Задач сегодня</span><strong id="completedToday">0/7</strong></div>
+                    <div class="stat-row"><span>Серия дней</span><strong id="streakValue">0</strong></div>
+                    <div class="stat-row"><span>Активная цель</span><strong id="activeGoalLabel">Не выбрана</strong></div>
+                    <div class="stat-row"><span>Уровень доступа</span><strong id="accessLevel">Free</strong></div>
+                    <div class="stat-row"><span>Профиль</span><strong id="profileLabel">Базовый</strong></div>
+                </div>
+            </div>
+        </section>
+
+        <main>
+            <section id="goalsSection" class="section">
+                <div class="container">
+                    <h2>Выбери направление</h2>
+                    <div id="goalsGrid" class="goals-grid"></div>
                 </div>
             </section>
 
-            <!-- Featured Products -->
-            <section class="products-section" id="productsSection">
+            <section class="section alt-bg">
                 <div class="container">
                     <div class="section-header">
-                        <h2 class="section-title">Популярные товары</h2>
-                        <div class="view-all" onclick="showAllProducts()">Все товары</div>
+                        <h2>Советы и методы</h2>
+                        <select id="categoryFilter" class="select"></select>
                     </div>
-                    <div class="products-grid" id="products">
-                        <!-- Products will be loaded here -->
-                    </div>
+                    <div id="tipsGrid" class="tips-grid"></div>
                 </div>
             </section>
 
-            <!-- Features -->
-            <section class="features-section">
+            <section id="planSection" class="section">
                 <div class="container">
-                    <div class="features-grid">
-                        <div class="feature-card">
-                            <div class="feature-icon">🚚</div>
-                            <h3>Быстрая доставка</h3>
-                            <p>Доставим за 1-2 дня по всему городу</p>
-                        </div>
-                        <div class="feature-card">
-                            <div class="feature-icon">🛡️</div>
-                            <h3>Гарантия 2 года</h3>
-                            <p>Официальная гарантия на всю технику</p>
-                        </div>
-                        <div class="feature-card">
-                            <div class="feature-icon">💳</div>
-                            <h3>Рассрочка 0%</h3>
-                            <p>Покупка в рассрочку без переплат</p>
-                        </div>
+                    <h2>План на сегодня</h2>
+                    <p class="section-subtitle">Прогресс сохраняется по датам, серия считается автоматически.</p>
+                    <div id="planList" class="plan-list"></div>
+                    <div class="plan-actions">
+                        <button id="resetDayButton" class="ghost-btn">Сбросить отметки за сегодня</button>
                     </div>
                 </div>
             </section>
+
+            <section class="section alt-bg">
+                <div class="container">
+                    <h2>Управление данными</h2>
+                    <p class="section-subtitle">Сохрани резервную копию прогресса или восстанови данные с другого устройства.</p>
+                    <div class="form-actions">
+                        <button id="exportDataButton" class="ghost-btn">Экспорт JSON</button>
+                        <label class="ghost-btn file-btn">Импорт JSON
+                            <input id="importDataInput" type="file" accept="application/json" hidden>
+                        </label>
+                        <button id="resetAllButton" class="ghost-btn danger">Сбросить всё</button>
+                    </div>
+                </div>
+            </section>
+
         </main>
-
-        <!-- Shopping Cart -->
-        <div class="cart-overlay" id="cartOverlay">
-            <div class="cart-container">
-                <div class="cart-header">
-                    <h3>Ваша корзина</h3>
-                    <button class="close-cart" id="closeCart">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                            <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2"/>
-                        </svg>
-                    </button>
-                </div>
-                <div class="cart-content">
-                    <div class="cart-items" id="cartItems">
-                        <!-- Cart items will be loaded here -->
-                    </div>
-                    <div class="cart-empty" id="cartEmpty">
-                        <div class="empty-icon">🛒</div>
-                        <p>Ваша корзина пуста</p>
-                        <button class="continue-shopping" onclick="closeCart()">Продолжить покупки</button>
-                    </div>
-                </div>
-                <div class="cart-footer">
-                    <div class="cart-summary">
-                        <div class="cart-total">
-                            <span>Итого:</span>
-                            <span id="cartTotal">0</span>₽
-                        </div>
-                        <button class="checkout-btn" id="checkoutBtn">Оформить заказ</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Footer -->
-        <footer class="footer">
-            <div class="container">
-                <div class="footer-content">
-                    <div class="footer-brand">
-                        <div class="logo">EWO MOBILE</div>
-                        <p>Премиум техника с доставкой</p>
-                    </div>
-                    <div class="footer-contacts">
-                        <h4>Контакты</h4>
-                        <p>+7 (999) 123-45-67</p>
-                        <p>shop@ewomobile.ru</p>
-                    </div>
-                </div>
-            </div>
-        </footer>
     </div>
 
+    <div id="subscriptionModal" class="modal hidden" role="dialog" aria-modal="true">
+        <div class="modal-content">
+            <button id="closeModal" class="close-btn">✕</button>
+            <h3>Подписки</h3>
+            <div class="pricing-grid">
+                <div class="price-card">
+                    <h4>Free</h4>
+                    <p class="price">0 ₽</p>
+                    <ul>
+                        <li>Базовые советы</li>
+                        <li>Часть дневных заданий</li>
+                    </ul>
+                    <button class="tier-btn" data-tier="free">Оставить Free</button>
+                </div>
+                <div class="price-card featured">
+                    <h4>Plus</h4>
+                    <p class="price">349 ₽ / мес</p>
+                    <ul>
+                        <li>Все советы и гайды</li>
+                        <li>Полный трекер</li>
+                        <li>Премиум-контент</li>
+                    </ul>
+                    <button class="tier-btn" data-tier="plus">Выбрать Plus</button>
+                </div>
+                <div class="price-card">
+                    <h4>Pro</h4>
+                    <p class="price">699 ₽ / мес</p>
+                    <ul>
+                        <li>Расширенные программы</li>
+                        <li>Глубокая аналитика прогресса</li>
+                        <li>Ранний доступ к новым трекам</li>
+                    </ul>
+                    <button class="tier-btn" data-tier="pro">Выбрать Pro</button>
+                </div>
+            </div>
+            <p class="muted">Демо-выбор тарифа. Для продакшена: RevenueCat + App Store/Google Play billing.</p>
+        </div>
+    </div>
+
+    <div id="ageGateModal" class="modal hidden" role="dialog" aria-modal="true">
+        <div class="modal-content">
+            <h3>Подтверждение возраста</h3>
+            <p class="muted">Продолжая, ты подтверждаешь, что советы используются осознанно и при необходимости обсуждаются с родителями/врачом.</p>
+            <button id="confirmAgeButton" class="primary-btn">Подтвердить и продолжить</button>
+        </div>
+    </div>
+
+
+    <div id="onboardingModal" class="modal hidden" role="dialog" aria-modal="true">
+        <div class="modal-content">
+            <h3>Персональная настройка плана</h3>
+            <p class="muted">Выбери исходный уровень и сколько времени в день готов уделять.</p>
+            <div class="form-grid">
+                <label>Уровень
+                    <select id="levelSelect" class="select">
+                        <option value="beginner">Начинающий</option>
+                        <option value="intermediate">Средний</option>
+                        <option value="advanced">Продвинутый</option>
+                    </select>
+                </label>
+                <label>Время в день
+                    <select id="timeSelect" class="select">
+                        <option value="15">15 минут</option>
+                        <option value="30">30 минут</option>
+                        <option value="45">45 минут</option>
+                        <option value="60">60 минут</option>
+                    </select>
+                </label>
+            </div>
+            <div class="form-actions">
+                <button id="saveOnboardingButton" class="primary-btn">Сохранить и обновить план</button>
+                <button id="closeOnboardingButton" class="ghost-btn">Отмена</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="authModal" class="modal hidden" role="dialog" aria-modal="true">
+        <div class="modal-content">
+            <h3>Вход для синхронизации</h3>
+            <p class="muted">Введи email — получишь magic link для входа (Supabase Auth).</p>
+            <div class="form-grid">
+                <label>Email
+                    <input id="authEmailInput" class="select" type="email" placeholder="you@example.com" />
+                </label>
+            </div>
+            <div class="form-actions">
+                <button id="sendMagicLinkButton" class="primary-btn">Отправить ссылку</button>
+                <button id="signOutButton" class="ghost-btn">Выйти</button>
+                <button id="closeAuthButton" class="ghost-btn">Закрыть</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-client.js"></script>
+    <script src="logic.js"></script>
     <script src="app.js"></script>
 </body>
 </html>
